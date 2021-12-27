@@ -7,7 +7,7 @@ import { FavouritesInner, StyledFavourites } from "./styles";
 
 export function Favourites() {
   const dispatch = useAppDispatch();
-  const { favourites } = useAppSelector((state) => state.favouritesReducer);
+  const { favourites } = useAppSelector((state) => state.favourites);
 
   useEffect(() => {
     dispatch(fetchFavorites());

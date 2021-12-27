@@ -19,7 +19,7 @@ export const UIModalSlice = createSlice({
       state.modal.isOpened = true;
     },
     closeModal: (state) => {
-        state.modal.isOpened = false;
+      state.modal.isOpened = false;
     },
   },
 });

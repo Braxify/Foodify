@@ -9,6 +9,7 @@ export const Dish = styled.div`
   flex-direction: column;
   height: ${DISH_CARD_HEIGHT}px;
   max-width: ${DISH_CARD_WIDTH}px;
+  position: relative;
 `;
 
 export const DishImage = styled.img`
@@ -23,7 +24,7 @@ export const DishInfo = styled.div`
   padding: 35px 28px;
   background-color: ${theme.colors.lightGray};
   flex-grow: 1;
-  @media ${theme.media.small}{
+  @media ${theme.media.small} {
     padding: 25px 20px;
   }
 `;
@@ -33,7 +34,7 @@ export const DishTitle = styled.div`
   font-weight: 700;
   margin-bottom: 26px;
 
-  @media ${theme.media.medium}{
+  @media ${theme.media.medium} {
     margin-bottom: 18px;
   }
 `;
@@ -45,3 +46,19 @@ export const DishDescription = styled.div`
   max-height: 150px;
   overflow: auto;
 `;
+
+export const RemoveDishButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  cursor: pointer;
+`;
+
+export const RemoveDishIcon = styled.img``;

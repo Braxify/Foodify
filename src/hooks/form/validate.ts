@@ -1,10 +1,17 @@
-export const isLength = (value: any, { min = 6, max }: any): any => {
+export const isLength = (
+  value: string,
+  { min = 6, max }: { min: number; max: number }
+): boolean | Error => {
   if (typeof value !== "string") {
     return false;
   }
   const { length } = value;
 
   if (typeof min !== "number" || length < min) {
+    return false;
+  }
+
+  if (!value.trim()) {
     return false;
   }
 
@@ -21,7 +28,7 @@ export const isLength = (value: any, { min = 6, max }: any): any => {
   return true;
 };
 
-export const isValidResult = (result: any) => {
+export const isValidResult = (result: any): any => {
   return result.every((item: any) => item[Object.keys(item)[0]]);
 };
 
@@ -34,7 +41,7 @@ export const getKeys = (fields: any) => {
   return keys;
 };
 
-export const validate = (state: any, fields: any): any => {
+export const validate = (state: any, fields: any): object => {
   const result = Object.keys(fields).map((field) => {
     const current = fields[field];
 
@@ -44,7 +51,7 @@ export const validate = (state: any, fields: any): any => {
     // Check availability isLength validate
     if (current.isLength) {
       return {
-        [field]: isLength(state[field], { ...current.isLength }),
+        [field]: isLength(state[field].trim(), { ...current.isLength }),
       };
     }
 

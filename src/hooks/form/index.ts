@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { getKeys, validate } from "./validate";
 
-const useForm = (fields: any) => {
+const useForm = (fields: object) => {
   const [value, setValue] = useState(getKeys(fields));
   const [disabled, setDisabled] = useState(true);
 

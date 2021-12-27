@@ -46,3 +46,5 @@ export const DishCardAction = styled(StyledButton)`
     width: 50%;
   }
 `;
+
+export const StyledLike = styled.img``;

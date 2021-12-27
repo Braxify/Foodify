@@ -1,4 +1,5 @@
 import { Navbar } from "components/Navbar";
+import { ROUTE } from "enums/routes";
 import { Favourites } from "pages/Favourites";
 import { RandomDish } from "pages/RandomDish";
 import { HashRouter, Route, Routes } from "react-router-dom";
@@ -8,9 +9,9 @@ export function Routing() {
     <HashRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<RandomDish />} />
-        <Route path="/random" element={<RandomDish />} />
-        <Route path="/favourites" element={<Favourites />} />
+        <Route path={ROUTE.HOME} element={<RandomDish />} />
+        <Route path={ROUTE.RANDOM} element={<RandomDish />} />
+        <Route path={ROUTE.FAVOURITES} element={<Favourites />} />
       </Routes>
     </HashRouter>
   );

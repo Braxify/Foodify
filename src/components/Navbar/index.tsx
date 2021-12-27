@@ -1,3 +1,5 @@
+import { Modal } from "components/Modal";
+import { ROUTE } from "enums/routes";
 import { useAppDispatch } from "hooks/redux";
 import { openModal } from "store/reducers/UIModalSlice";
 import { Container } from "styles/components";
@@ -23,10 +25,11 @@ export function Navbar() {
         <NavbarInner>
           <NavbarMenu>
             <StyledLinks>
-              <StyledLink to="/random">Random dish</StyledLink>
-              <StyledLink to="/favourites">Favourites</StyledLink>
+              <StyledLink to={ROUTE.RANDOM}>Random dish</StyledLink>
+              <StyledLink to={ROUTE.FAVOURITES}>Favourites</StyledLink>
             </StyledLinks>
             <NavbarButton onClick={handleClick}>Add custom dish</NavbarButton>
+            <Modal />
           </NavbarMenu>
         </NavbarInner>
       </Container>

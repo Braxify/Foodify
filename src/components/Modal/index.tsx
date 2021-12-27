@@ -1,16 +1,19 @@
 import { useAppDispatch, useAppSelector } from "hooks/redux";
 import { useCallback, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { closeModal } from "store/reducers/UIModalSlice";
 import { ModalWindow } from "./ModalWindow";
 import { StyledModal, StyledOverlay } from "./styles";
 
+const portalDiv = document.getElementById("modal-root") as HTMLElement;
+
 export const Modal = () => {
-  const { modal } = useAppSelector((state) => state.UIModalReducer);
+  const { modal } = useAppSelector((state) => state.UIModal);
   const dispatch = useAppDispatch();
 
-  const handleClose = useCallback(() => {
+  const handleClose = () => {
     dispatch(closeModal());
-  }, [dispatch]);
+  };
 
   const handleEsc = useCallback(
     (event: KeyboardEvent) => {
@@ -28,10 +31,11 @@ export const Modal = () => {
     };
   }, [handleEsc]);
 
-  return (
+  return createPortal(
     <StyledModal isOpened={modal.isOpened}>
       <StyledOverlay onClick={handleClose} />
       <ModalWindow />
-    </StyledModal>
+    </StyledModal>,
+    portalDiv
   );
 };

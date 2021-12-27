@@ -1,7 +1,7 @@
 import useForm from "hooks/form";
 import { useAppDispatch } from "hooks/redux";
 import { FormEvent } from "react";
-import { addToFavourites } from "store/reducers/FavouritesSlice";
+import { handleFavourites } from "store/reducers/FavouritesSlice";
 import { closeModal } from "store/reducers/UIModalSlice";
 import theme from "styles/theme";
 import {
@@ -19,12 +19,12 @@ export const ModalWindow = () => {
   const validatorConf = {
     name: {
       isLength: {
-        min: 1,
+        min: 3,
       },
     },
     instructions: {
       isLength: {
-        min: 1,
+        min: 3,
       },
     },
   };
@@ -32,7 +32,7 @@ export const ModalWindow = () => {
 
   const submitHandler = (e: FormEvent) => {
     e.preventDefault();
-    dispatch(addToFavourites(value));
+    dispatch(handleFavourites(value));
     handleClose();
     setTimeout(() => {
       cleanForm();

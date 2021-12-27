@@ -6,23 +6,22 @@ import theme from "styles/theme";
 import App from "./App";
 import BaseStyles from "styles/global";
 import { Provider } from "react-redux";
-import { setupStore } from "store/store";
-import { Modal } from "components/Modal";
+import { store, persistor } from "store/store";
+import { PersistGate } from "redux-persist/integration/react";
 
 const GlobalStyles = createGlobalStyle`
 ${BaseStyles}
 `;
 
-const store = setupStore();
-
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <App />
-        <Modal />
-        <GlobalStyles />
-      </ThemeProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <ThemeProvider theme={theme}>
+          <App />
+          <GlobalStyles />
+        </ThemeProvider>
+      </PersistGate>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")

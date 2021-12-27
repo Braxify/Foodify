@@ -1,33 +1,35 @@
-import { getArrayFromStorage, saveArrayToStorage } from "utils/localStorage";
+import { IRandomDish } from "interfaces/IRandomDish";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface FavouritesState {
-  favourites: Array<any>;
+  favourites: Array<IRandomDish>;
 }
 
 const initialState: FavouritesState = {
-  favourites: getArrayFromStorage("favourites"),
+  favourites: [],
 };
 
 export const favouritesSlice = createSlice({
   name: "favourites",
   initialState,
   reducers: {
-    addToFavourites: (state, action: PayloadAction<any>) => {
+    handleFavourites: (state, action: PayloadAction<IRandomDish>) => {
       const pos = state.favourites
         .map((favourite) => favourite.name)
         .indexOf(action.payload.name);
       if (pos === -1) {
         state.favourites = [...state.favourites, action.payload];
-        saveArrayToStorage("favourites", state.favourites);
+      } else {
+        const newFavourites = state.favourites.filter(
+          (fav) => fav.name !== action.payload.name
+        );
+        state.favourites = [...newFavourites];
       }
     },
-    fetchFavorites: (state) => {
-      state.favourites = getArrayFromStorage("favourites");
-    },
+    fetchFavorites: (state) => {},
   },
 });
 
-export const { addToFavourites, fetchFavorites } = favouritesSlice.actions;
+export const { handleFavourites, fetchFavorites } = favouritesSlice.actions;
 
 export default favouritesSlice.reducer;
