@@ -11,9 +11,9 @@ export const Modal = () => {
   const { modal } = useAppSelector((state) => state.UIModal);
   const dispatch = useAppDispatch();
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     dispatch(closeModal());
-  };
+  }, [dispatch]);
 
   const handleEsc = useCallback(
     (event: KeyboardEvent) => {

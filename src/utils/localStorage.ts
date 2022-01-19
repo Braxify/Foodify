@@ -1,4 +1,3 @@
-import { IRandomDish } from "./../interfaces/IRandomDish";
 export const getItemFromStorage = (key: string, defaultValue = "") => {
   let value = localStorage.getItem(key);
   if (value === null) {
@@ -21,6 +20,6 @@ export const saveItemToStorage = (key: string, value: any) => {
   localStorage.setItem(key, value);
 };
 
-export const saveArrayToStorage = (key: string, value: IRandomDish[]) => {
+export const saveArrayToStorage = <T>(key: string, value: T[]) => {
   saveItemToStorage(key, JSON.stringify(value));
 };

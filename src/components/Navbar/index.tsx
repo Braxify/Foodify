@@ -1,6 +1,7 @@
 import { Modal } from "components/Modal";
 import { ROUTE } from "enums/routes";
 import { useAppDispatch } from "hooks/redux";
+import { memo } from "react";
 import { openModal } from "store/reducers/UIModalSlice";
 import { Container } from "styles/components";
 import {
@@ -12,7 +13,7 @@ import {
   StyledLinks,
 } from "./styles";
 
-export function Navbar() {
+export function NavbarComponent() {
   const dispatch = useAppDispatch();
 
   const handleClick = () => {
@@ -36,3 +37,5 @@ export function Navbar() {
     </StyledNavbar>
   );
 }
+
+export const Navbar = memo(NavbarComponent);
